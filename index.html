@@ -1,116 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!--Bootstrap CDN-->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
-    rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
-    crossorigin="anonymous">
-    
-    <!--My stylesheet-->
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <title>Weather Project</title>
-
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Weather Dashboard</title>
 </head>
+
 <body>
-
-
-<!-- Start Heading -->
-<header class="container-fluid bg-dark text-white">
-    <div class="row justify-content-center">
+    <header class="bg-dark text-light" style="text-align: center;">
         <h1>Weather Dashboard</h1>
-    </div>
-</header>
-
-<!--searched cities table-->
-<div class="container-fluid">
-    <divrow>
-    <div class="row justify-content-around">
-        <div class="cols-1 card bg-light mt-2">
-            <h5 class="mt-3">Search for a City:</h5>
-            <p>does not support zip code search.</p>
-            <div class="form-control-lg">
-                <input class="ml col-6 " id="city" type="text" placeholder="Search">
-                <button class="btn btn-outline-secondary" id="submit-city" type="submit"><i class="fas fa-search"></i></button>
+    </header>
+    <!-- Search for a city -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 text-white" style="padding: 1.5rem;">
+                <!-- Search for city text -->
+                <h4>Search for a city: </h4>
+                <!-- Search for city input box -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search City" aria-label="Search City"
+                        aria-describedby="button-addon2" id="search-term">
+                    <!-- Search for a city button -->
+                    <div class="input-group-append">
+                        <button class="btn btn-dark search-button" type="button"
+                            id="button-addon2">Search</button>
+                    </div>
+                </div>
+                <!-- The city list appears -->
+                <ul id="city-list" style="list-style: none;"></ul>
             </div>
-    </divrow>
-
-<!--search history list and clear button-->
-
-<ul class="mr-5 mt-2" id="search-history"></ul>
-<button class="btn btn-outline-secondary p-2" id="clear-history">Clear</button>
+            <!-- API Call current weather -->
+            <div class="col-sm-1 mr-n5"></div>
+            <div class="main-content col-md-8" style="padding: 1.5rem;">
+                <div class="jumbotron bg-transparent" id="current-day-forecast"
+                    style="padding-top: 1.5rem; padding-bottom: 1.5rem">
+                </div>
+                <!-- API Call five day -->
+                <div class="jumbotron bg-transparent" style="padding-top: 1.5rem; padding-bottom: 1.5rem">
+                    <div class="row" id="five-day-forecast"></div>
+                </div>
+            </div>
         </div>
-        
-<!--The days weather/current weather-->
-    <div class="col-7 mt-4">
-            <div class="row" id="current-weather" >
-                <div class="col-7" >
-                    <h3><span id = "current-city"></span><img id="weather-img" src=""></h3> 
-                    <p>Temperature: <span id="temperature"></span></p>
-                    <p>Humidity: <span id="humidity"></span></p>
-                    <p>Wind Speed: <span id="windspeed"></span></p>
-                    <p>UV Index: <span id="uvindex"></span></p>
-                </div>
-            </div>
-<!--5-day weather forecast-->             
-            <h3 class="mt-5 mb-5 cols-1">5 Day Forecast:</h3>
-                <div class="card-deck">
-                    <div class="card bg-primary">
-                        <div id="day-1" class="card-body p-2">
-                                <h6 class="card-date"></h6>
-                                <img class = "weather-icon">
-                                <p class = "weather-temp"></p>
-                                <p class = "weather-humidity"></p>
-                        </div>
-                    </div>
-                    <div class="card bg-primary">
-                        <div id="day-2" class="card-body p-2">
-                                <h6 class="card-date"></h6>
-                                <img class = "weather-icon">
-                                <p class = "weather-temp"></p>
-                                <p class = "weather-humidity"></p>
-                        </div>
-                    </div>
-                    <div class="card bg-primary">
-                        <div id="day-3" class="card-body p-2">
-                                <h6 class="card-date"></h6>
-                                <img class = "weather-icon">
-                                <p class = "weather-temp"></p>
-                                <p class = "weather-humidity"></p>
-                        </div>
-                    </div>
-                    <div class="card bg-primary">
-                        <div id="day-4" class=" card-body p-2">
-                                <h6 class="card-date"></h6>
-                                <img class = "weather-icon">
-                                <p class = "weather-temp"></p>
-                                <p class = "weather-humidity"></p>
-                        </div>
-                    </div>
-                    <div class="card bg-primary">
-                        <div id="day-5" class="card-body p-2">
-                                <h6 class="card-date"></h6>
-                                <img class = "weather-icon">
-                                <p class = "weather-temp"></p>
-                                <p class = "weather-humidity"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
     </div>
-
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="assets/js/script.js"></script>
-<!--CDN and Script to make the code render property-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="assets/js/script.js"></script>
-    <script src="https://kit.fontawesome.com/8b8f26d0e1.js" crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="javascript/script.js"></script>
+    <script src="javascript/query.js"></script>
 </body>
-</html
+</html>
